@@ -1,0 +1,292 @@
+<HTML>
+<HEAD>
+<TITLE>Win32::Clipboard - Interaction with the Windows clipboard</TITLE>
+<LINK REV="made" HREF="mailto:">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<UL>
+
+		<LI><A HREF="#REFERENCE">REFERENCE</A>
+		<LI><A HREF="#CONSTANTS">CONSTANTS</A>
+	</UL>
+
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+Win32::Clipboard - Interaction with the Windows clipboard
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<PRE>    use Win32::Clipboard;
+</PRE>
+<P>
+<PRE>    $CLIP = Win32::Clipboard();
+</PRE>
+<P>
+<PRE>    print &quot;Clipboard contains: &quot;, $CLIP-&gt;Get(), &quot;\n&quot;;
+</PRE>
+<P>
+<PRE>    $CLIP-&gt;Set(&quot;some text to copy into the clipboard&quot;);
+</PRE>
+<P>
+<PRE>    $CLIP-&gt;Empty();
+</PRE>
+<P>
+<PRE>    $CLIP-&gt;WaitForChange();
+    print &quot;Clipboard has changed!\n&quot;;
+</PRE>
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+This module lets you interact with the Windows clipboard: you can get its
+content, set it, empty it, or let your script sleep until it changes. This
+version supports 3 formats for clipboard data:
+
+<UL>
+<LI><STRONG><A NAME="item_text">text (CF_TEXT)</A></STRONG>
+<P>
+The clipboard contains some text; this is the <STRONG>only</STRONG> format you can use to set clipboard data; you get it as a single string.
+
+<P>
+Example:
+
+<P>
+<PRE>    $text = Win32::Clipboard::GetText();
+    print $text;
+</PRE>
+<LI><STRONG><A NAME="item_bitmap">bitmap (CF_DIB)</A></STRONG>
+<P>
+The clipboard contains an image, either a bitmap or a picture copied in the
+clipboard from a graphic application. The data you get is a binary buffer
+ready to be written to a bitmap (BMP format) file.
+
+<P>
+Example:
+
+<P>
+<PRE>    $image = Win32::Clipboard::GetBitmap();
+    open    BITMAP, &quot;&gt;some.bmp&quot;;
+    binmode BITMAP;
+    print   BITMAP $image;
+    close   BITMAP;
+</PRE>
+<LI><STRONG><A NAME="item_list">list of files (CF_HDROP)</A></STRONG>
+<P>
+The clipboard contains files copied or cutted from an Explorer-like
+application; you get a list of filenames.
+
+<P>
+Example:
+
+<P>
+<PRE>    @files = Win32::Clipboard::GetFiles();
+    print join(&quot;\n&quot;, @files);
+</PRE>
+</UL>
+<P>
+<HR>
+<H2><A NAME="REFERENCE">REFERENCE</A></H2>
+<P>
+All the functions can be used either with their full name (eg. <STRONG>Win32::Clipboard::Get</STRONG>) or as methods of a <CODE>Win32::Clipboard</CODE> object. For the syntax, refer to <A HREF="#SYNOPSIS">SYNOPSIS</A> above. Note also that you can create a clipboard object and set its content
+at the same time with:
+
+<P>
+<PRE>    $CLIP = Win32::Clipboard(&quot;blah blah blah&quot;);
+</PRE>
+<P>
+or with the more common form:
+
+<P>
+<PRE>    $CLIP = new Win32::Clipboard(&quot;blah blah blah&quot;);
+</PRE>
+<P>
+If you prefer, you can even tie the Clipboard to a variable like this:
+
+<P>
+<PRE>        tie $CLIP, 'Win32::Clipboard';
+</PRE>
+<P>
+<PRE>        print &quot;Clipboard content: $CLIP\n&quot;;
+        $CLIP = &quot;some text to copy to the clipboard...&quot;;
+</PRE>
+<P>
+In this case, you can still access other methods using the
+<CODE>tied()</CODE> function:
+
+<P>
+<PRE>        tied($CLIP)-&gt;Empty;
+        print &quot;got the picture&quot; if tied($CLIP)-&gt;IsBitmap;
+</PRE>
+<DL>
+<DT><STRONG><A NAME="item_Empty">Empty()</A></STRONG><DD>
+<P>
+Empty the clipboard.
+
+<P>
+
+<DT><STRONG><A NAME="item_EnumFormats">EnumFormats()</A></STRONG><DD>
+<P>
+Returns an array of identifiers describing the format for the data
+currently in the clipboard. Formats can be standard ones (described in the <A HREF="#CONSTANTS">CONSTANTS</A> section) or application-defined custom ones. See also
+<CODE>IsFormatAvailable().</CODE>
+
+<P>
+
+<DT><STRONG><A NAME="item_Get">Get()</A></STRONG><DD>
+<P>
+Returns the clipboard content; note that the result depends on the nature
+of clipboard data; to ensure that you get only the desired format, you
+should use <CODE>GetText(),</CODE> <CODE>GetBitmap()</CODE> or
+<CODE>GetFiles()</CODE> instead. <CODE>Get()</CODE> is in fact implemented
+as:
+
+<P>
+<PRE>        if(    IsBitmap() ) { return GetBitmap(); }
+        elsif( IsFiles()  ) { return GetFiles();  }
+        else                { return GetText();   }
+</PRE>
+<P>
+See also <CODE>IsBitmap(),</CODE> <CODE>IsFiles(),</CODE>
+<CODE>IsText(),</CODE> <CODE>EnumFormats()</CODE> and
+<CODE>IsFormatAvailable()</CODE> to check the clipboard format before
+getting data.
+
+<P>
+
+<DT><STRONG><A NAME="item_GetAs">GetAs(FORMAT)</A></STRONG><DD>
+<P>
+Returns the clipboard content in the desired FORMAT (can be one of the
+constants defined in the <A HREF="#CONSTANTS">CONSTANTS</A> section or a custom format). Note that the only meaningful identifiers are <CODE>CF_TEXT</CODE>, <CODE>CF_DIB</CODE> and <CODE>CF_HDROP</CODE>; any other format is treated as a string.
+
+<P>
+
+<DT><STRONG><A NAME="item_GetBitmap">GetBitmap()</A></STRONG><DD>
+<P>
+Returns the clipboard content as an image, or <CODE>undef</CODE> on errors.
+
+<P>
+
+<DT><STRONG><A NAME="item_GetFiles">GetFiles()</A></STRONG><DD>
+<P>
+Returns the clipboard content as a list of filenames, or <CODE>undef</CODE> on errors.
+
+<P>
+
+<DT><STRONG><A NAME="item_GetFormatName">GetFormatName(FORMAT)</A></STRONG><DD>
+<P>
+Returns the name of the specified custom clipboard format, or <CODE>undef</CODE> on errors; note that you cannot get the name of the standard formats
+(described in the
+<A HREF="#CONSTANTS">CONSTANTS</A> section).
+
+<P>
+
+<DT><STRONG><A NAME="item_GetText">GetText()</A></STRONG><DD>
+<P>
+Returns the clipboard content as a string, or <CODE>undef</CODE> on errors.
+
+<P>
+
+<DT><STRONG><A NAME="item_IsBitmap">IsBitmap()</A></STRONG><DD>
+<P>
+Returns a boolean value indicating if the clipboard contains an image. See
+also <CODE>GetBitmap().</CODE>
+
+<P>
+
+<DT><STRONG><A NAME="item_IsFiles">IsFiles()</A></STRONG><DD>
+<P>
+Returns a boolean value indicating if the clipboard contains a list of
+files. See also <CODE>GetFiles().</CODE>
+
+<P>
+
+<DT><STRONG><A NAME="item_IsFormatAvailable">IsFormatAvailable(FORMAT)</A></STRONG><DD>
+<P>
+Checks if the clipboard data matches the specified FORMAT (one of the
+constants described in the <A HREF="#CONSTANTS">CONSTANTS</A> section); returns zero if the data does not match, a nonzero value if it
+matches.
+
+<P>
+
+<DT><STRONG><A NAME="item_IsText">IsText()</A></STRONG><DD>
+<P>
+Returns a boolean value indicating if the clipboard contains text. See also
+<CODE>GetText().</CODE>
+
+<P>
+
+<DT><STRONG><A NAME="item_Set">Set(VALUE)</A></STRONG><DD>
+<P>
+Set the clipboard content to the specified string.
+
+<P>
+
+<DT><STRONG><A NAME="item_WaitForChange">WaitForChange([TIMEOUT])</A></STRONG><DD>
+<P>
+This function halts the script until the clipboard content changes. If you
+specify a <CODE>TIMEOUT</CODE> value (in milliseconds), the function will return when this timeout
+expires, even if the clipboard hasn't changed. If no value is given, it
+will wait indefinitely. Returns 1 if the clipboard has changed, <CODE>undef</CODE> on errors.
+
+</DL>
+<P>
+<HR>
+<H2><A NAME="CONSTANTS">CONSTANTS</A></H2>
+<P>
+These constants are the standard clipboard formats recognized by
+Win32::Clipboard:
+
+<P>
+<PRE>        CF_TEXT             1
+        CF_DIB              8
+        CF_HDROP            15
+</PRE>
+<P>
+The following formats are <STRONG>not recognized</STRONG> by Win32::Clipboard; they are, however, exported constants and can
+eventually be used with the <CODE>EnumFormats(),</CODE>
+<CODE>IsFormatAvailable()</CODE> and <CODE>GetAs()</CODE> functions:
+
+<P>
+<PRE>        CF_BITMAP           2
+        CF_METAFILEPICT     3
+        CF_SYLK             4
+        CF_DIF              5
+        CF_TIFF             6
+        CF_OEMTEXT          7
+        CF_PALETTE          9
+        CF_PENDATA          10
+        CF_RIFF             11
+        CF_WAVE             12
+        CF_UNICODETEXT      13
+        CF_ENHMETAFILE      14
+        CF_LOCALE           16
+</PRE>
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+Aldo Calpini &lt;<EM>dada@perl.it</EM>&gt;
+
+<P>
+Original XS porting by Gurusamy Sarathy &lt;<EM>gsar@engin.umich.edu</EM>&gt;.
+
+</BODY>
+
+</HTML>
