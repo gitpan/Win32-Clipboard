@@ -1,94 +1,140 @@
 # This Makefile is for the Win32::Clipboard extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 5.4302 (Revision: 1.222) from the contents of
+# 6.17 (Revision: 1.133) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
-#	ANY CHANGES MADE HERE WILL BE LOST!
+#       ANY CHANGES MADE HERE WILL BE LOST!
 #
 #   MakeMaker ARGV: ()
 #
 #   MakeMaker Parameters:
 
-#	ABSTRACT => q[Interaction with the Windows clipboard]
-#	AUTHOR => q[Aldo Calpini <dada@perl.it>]
-#	LIBS => q[user32.lib]
-#	NAME => q[Win32::Clipboard]
-#	VERSION_FROM => q[Clipboard.pm]
-#	XS => { Clipboard.xs=>q[Clipboard.cpp] }
-#	dist => { COMPRESS=>q[gzip -9f], SUFFIX=>q[gz] }
+#     ABSTRACT => q[Interaction with the Windows clipboard]
+#     AUTHOR => q[Aldo Calpini <dada@perl.it>]
+#     LIBS => q[user32.lib]
+#     NAME => q[Win32::Clipboard]
+#     VERSION_FROM => q[Clipboard.pm]
+#     XS => { Clipboard.xs=>q[Clipboard.cpp] }
+#     dist => { COMPRESS=>q[gzip -9f], SUFFIX=>q[gz] }
 
 # --- MakeMaker post_initialize section:
 
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via p:/lib/Config.pm)
+# These definitions are from config.sh (via C:/Perl/lib/Config.pm)
 
 # They may have been overridden via Makefile.PL or on the command line
 AR = lib
-CC = cl.exe
+CC = cl
 CCCDLFLAGS =  
 CCDLFLAGS =  
 DLEXT = dll
 DLSRC = dl_win32.xs
 LD = link
-LDDLFLAGS = -dll -nologo -nodefaultlib -release  -libpath:"p:\lib\CORE"  -machine:x86
-LDFLAGS = -nologo -nodefaultlib -release  -libpath:"p:\lib\CORE"  -machine:x86
-LIBC = PerlCRT.lib
+LDDLFLAGS = -dll -nologo -nodefaultlib -debug -opt:ref,icf  -libpath:"C:\Perl\lib\CORE"  -machine:x86
+LDFLAGS = -nologo -nodefaultlib -debug -opt:ref,icf  -libpath:"C:\Perl\lib\CORE"  -machine:x86
+LIBC = msvcrt.lib
 LIB_EXT = .lib
 OBJ_EXT = .obj
 OSNAME = MSWin32
 OSVERS = 4.0
 RANLIB = rem
+SITELIBEXP = C:\Perl\site\lib
+SITEARCHEXP = C:\Perl\site\lib
 SO = dll
 EXE_EXT = .exe
+FULL_AR = 
+VENDORARCHEXP = 
+VENDORLIBEXP = 
 
 
 # --- MakeMaker constants section:
 AR_STATIC_ARGS = cr
+DIRFILESEP = ^\
 NAME = Win32::Clipboard
-DISTNAME = Win32-Clipboard
 NAME_SYM = Win32_Clipboard
-VERSION = 0.51
-VERSION_SYM = 0_51
-XS_VERSION = 0.51
-INST_BIN = blib\bin
-INST_EXE = blib\script
-INST_LIB = blib\lib
-INST_ARCHLIB = blib\arch
-INST_SCRIPT = blib\script
-PREFIX = p:
-INSTALLDIRS = site
-INSTALLPRIVLIB = p:\lib
-INSTALLARCHLIB = p:\lib
-INSTALLSITELIB = p:\site\lib
-INSTALLSITEARCH = p:\site\lib
-INSTALLBIN = $(PREFIX)\bin
-INSTALLSCRIPT = $(PREFIX)\bin
-PERL_LIB = p:\lib
-PERL_ARCHLIB = p:\lib
-SITELIBEXP = p:\site\lib
-SITEARCHEXP = p:\site\lib
-LIBPERL_A = libperl.lib
-FIRST_MAKEFILE = Makefile
-MAKE_APERL_FILE = Makefile.aperl
-PERLMAINCC = $(CC)
-PERL_INC = P:\lib\CORE
-PERL = P:\bin\perl.exe
-FULLPERL = P:\bin\perl.exe
-
+VERSION = 0.52
 VERSION_MACRO = VERSION
+VERSION_SYM = 0_52
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
+XS_VERSION = 0.52
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
+INST_ARCHLIB = blib\arch
+INST_SCRIPT = blib\script
+INST_BIN = blib\bin
+INST_LIB = blib\lib
+INST_MAN1DIR = blib\man1
+INST_MAN3DIR = blib\man3
+MAN1EXT = 1
+MAN3EXT = 3
+INSTALLDIRS = site
+DESTDIR = 
+PREFIX = 
+PERLPREFIX = C:\Perl
+SITEPREFIX = C:\Perl\site
+VENDORPREFIX = 
+INSTALLPRIVLIB = $(PERLPREFIX)\lib
+DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
+INSTALLSITELIB = $(SITEPREFIX)\lib
+DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
+INSTALLVENDORLIB = 
+DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
+INSTALLARCHLIB = $(PERLPREFIX)\lib
+DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
+INSTALLSITEARCH = $(SITEPREFIX)\lib
+DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
+INSTALLVENDORARCH = 
+DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
+INSTALLBIN = $(PERLPREFIX)\bin
+DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
+INSTALLSITEBIN = C:\Perl\bin
+DESTINSTALLSITEBIN = $(DESTDIR)$(INSTALLSITEBIN)
+INSTALLVENDORBIN = 
+DESTINSTALLVENDORBIN = $(DESTDIR)$(INSTALLVENDORBIN)
+INSTALLSCRIPT = $(PERLPREFIX)\bin
+DESTINSTALLSCRIPT = $(DESTDIR)$(INSTALLSCRIPT)
+INSTALLMAN1DIR = none
+DESTINSTALLMAN1DIR = $(DESTDIR)$(INSTALLMAN1DIR)
+INSTALLSITEMAN1DIR = $(SITEPREFIX)\man\man1
+DESTINSTALLSITEMAN1DIR = $(DESTDIR)$(INSTALLSITEMAN1DIR)
+INSTALLVENDORMAN1DIR = 
+DESTINSTALLVENDORMAN1DIR = $(DESTDIR)$(INSTALLVENDORMAN1DIR)
+INSTALLMAN3DIR = none
+DESTINSTALLMAN3DIR = $(DESTDIR)$(INSTALLMAN3DIR)
+INSTALLSITEMAN3DIR = $(SITEPREFIX)\man\man3
+DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
+INSTALLVENDORMAN3DIR = 
+DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
+PERL_LIB = C:\Perl\lib
+PERL_ARCHLIB = C:\Perl\lib
+LIBPERL_A = libperl.lib
+FIRST_MAKEFILE = Makefile
+MAKEFILE_OLD = $(FIRST_MAKEFILE).old
+MAKE_APERL_FILE = $(FIRST_MAKEFILE).aperl
+PERLMAINCC = $(CC)
+PERL_INC = C:\Perl\lib\CORE
+PERL = C:\Perl\bin\perl.exe
+FULLPERL = C:\Perl\bin\perl.exe
+ABSPERL = $(PERL)
+PERLRUN = $(PERL)
+FULLPERLRUN = $(FULLPERL)
+ABSPERLRUN = $(ABSPERL)
+PERLRUNINST = $(PERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
+FULLPERLRUNINST = $(FULLPERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
+ABSPERLRUNINST = $(ABSPERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
+PERL_CORE = 0
+PERM_RW = 644
+PERM_RWX = 755
 
-MAKEMAKER = 
-MM_VERSION = 5.4302
+MAKEMAKER   = C:/Perl/lib/ExtUtils/MakeMaker.pm
+MM_VERSION  = 6.17
+MM_REVISION = 1.133
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
-# ROOTEXT = Directory part of FULLEXT with leading slash (eg /DBD)  !!! Deprecated from MM 5.32  !!!
 # PARENT_NAME = NAME without BASEEXT and no trailing :: (eg Foo::Bar)
 # DLBASE  = Basename part of dynamic library. May be just equal BASEEXT.
 FULLEXT = Win32\Clipboard
@@ -101,140 +147,111 @@ LDFROM = $(OBJECT)
 LINKTYPE = dynamic
 
 # Handy lists of source code files:
-XS_FILES= Clipboard.xs
-C_FILES = Clipboard.c \
-	Clipboard.cpp
-O_FILES = Clipboard.obj \
-	Clipboard.obj
-H_FILES = 
+XS_FILES = Clipboard.xs
+C_FILES  = Clipboard.c
+O_FILES  = Clipboard.obj
+H_FILES  = 
 MAN1PODS = 
-MAN3PODS = Clipboard.pm
-INST_MAN1DIR = blib\man1
-INSTALLMAN1DIR = p:\man\man1
-MAN1EXT = 1
-INST_MAN3DIR = blib\man3
-INSTALLMAN3DIR = p:\man\man3
-MAN3EXT = 3
-
-# work around a famous dec-osf make(1) feature(?):
-makemakerdflt: all
-
-.SUFFIXES: .xs .c .C .cpp .cxx .cc $(OBJ_EXT)
-
-# Nick wanted to get rid of .PRECIOUS. I don't remember why. I seem to recall, that
-# some make implementations will delete the Makefile when we rebuild it. Because
-# we call false(1) when we rebuild it. So make(1) is not completely wrong when it
-# does so. Our milage may vary.
-# .PRECIOUS: Makefile    # seems to be not necessary anymore
-
-.PHONY: all config static dynamic test linkext manifest
+MAN3PODS = 
 
 # Where is the Config information that we are using/depend on
-CONFIGDEP = $(PERL_ARCHLIB)\Config.pm $(PERL_INC)\config.h
+CONFIGDEP = $(PERL_ARCHLIB)$(DIRFILESEP)Config.pm $(PERL_INC)$(DIRFILESEP)config.h
 
-# Where to put things:
+# Where to build things
 INST_LIBDIR      = $(INST_LIB)\Win32
 INST_ARCHLIBDIR  = $(INST_ARCHLIB)\Win32
 
 INST_AUTODIR     = $(INST_LIB)\auto\$(FULLEXT)
 INST_ARCHAUTODIR = $(INST_ARCHLIB)\auto\$(FULLEXT)
 
-INST_STATIC  = $(INST_ARCHAUTODIR)\$(BASEEXT)$(LIB_EXT)
-INST_DYNAMIC = $(INST_ARCHAUTODIR)\$(DLBASE).$(DLEXT)
-INST_BOOT    = $(INST_ARCHAUTODIR)\$(BASEEXT).bs
+INST_STATIC      = $(INST_ARCHAUTODIR)\$(BASEEXT)$(LIB_EXT)
+INST_DYNAMIC     = $(INST_ARCHAUTODIR)\$(DLBASE).$(DLEXT)
+INST_BOOT        = $(INST_ARCHAUTODIR)\$(BASEEXT).bs
 
-EXPORT_LIST = Clipboard.def
+# Extra linker info
+EXPORT_LIST        = $(BASEEXT).def
+PERL_ARCHIVE       = $(PERL_INC)\perl58.lib
+PERL_ARCHIVE_AFTER = 
 
-PERL_ARCHIVE = $(PERL_INC)\perlcore.lib
 
-TO_INST_PM = Clipboard.pm
+TO_INST_PM = Clipboard.pm \
+	save-bmp.pl \
+	save-png.pl
 
 PM_TO_BLIB = Clipboard.pm \
-	$(INST_LIBDIR)\Clipboard.pm
+	$(INST_LIB)\Win32\Clipboard.pm \
+	save-bmp.pl \
+	$(INST_LIB)\Win32\save-bmp.pl \
+	save-png.pl \
+	$(INST_LIB)\Win32\save-png.pl
+
+
+# --- MakeMaker platform_constants section:
+MM_Win32_VERSION = 1.09
 
 
 # --- MakeMaker tool_autosplit section:
-
 # Usage: $(AUTOSPLITFILE) FileToSplit AutoDirToSplitInto
-AUTOSPLITFILE = $(PERL) "-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" -MAutoSplit  -e "autosplit($$ARGV[0], $$ARGV[1], 0, 1, 1);"
+AUTOSPLITFILE = $(PERLRUN)  -e "use AutoSplit;  autosplit($$ARGV[0], $$ARGV[1], 0, 1, 1)"
+
 
 
 # --- MakeMaker tool_xsubpp section:
 
-XSUBPPDIR = P:\lib\ExtUtils
+XSUBPPDIR = C:\Perl\lib\ExtUtils
 XSUBPP = $(XSUBPPDIR)/xsubpp
 XSPROTOARG = 
-XSUBPPDEPS = $(XSUBPPDIR)\typemap
-XSUBPPARGS = -typemap $(XSUBPPDIR)\typemap
+XSUBPPDEPS = C:\Perl\lib\ExtUtils\typemap $(XSUBPP)
+XSUBPPARGS = -typemap C:\Perl\lib\ExtUtils\typemap
+XSUBPP_EXTRA_ARGS = 
 
 
 # --- MakeMaker tools_other section:
-
-SHELL = cmd /x /c
-CHMOD = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e chmod
-CP = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e cp
-LD = link
-MV = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e mv
+CHMOD = $(PERLRUN) -MExtUtils::Command -e chmod
+CP = $(PERLRUN) -MExtUtils::Command -e cp
+MV = $(PERLRUN) -MExtUtils::Command -e mv
 NOOP = rem
-RM_F = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_f
-RM_RF = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf
-TEST_F = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e test_f
-TOUCH = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e touch
+NOECHO = @
+RM_F = $(PERLRUN) -MExtUtils::Command -e rm_f
+RM_RF = $(PERLRUN) -MExtUtils::Command -e rm_rf
+TEST_F = $(PERLRUN) -MExtUtils::Command -e test_f
+TOUCH = $(PERLRUN) -MExtUtils::Command -e touch
 UMASK_NULL = umask 0
 DEV_NULL = > NUL
+MKPATH = $(PERLRUN) "-MExtUtils::Command" -e mkpath
+EQUALIZE_TIMESTAMP = $(PERLRUN) "-MExtUtils::Command" -e eqtime
+ECHO = $(PERLRUN) -l -e "print qq{@ARGV}"
+ECHO_N = $(PERLRUN)  -e "print qq{@ARGV}"
+UNINST = 0
+VERBINST = 0
+MOD_INSTALL = $(PERLRUN) -MExtUtils::Install -e "install({@ARGV}, '$(VERBINST)', 0, '$(UNINST)');"
+DOC_INSTALL = $(PERLRUN) "-MExtUtils::Command::MM" -e perllocal_install
+UNINSTALL = $(PERLRUN) "-MExtUtils::Command::MM" -e uninstall
+WARN_IF_OLD_PACKLIST = $(PERLRUN) "-MExtUtils::Command::MM" -e warn_if_old_packlist
 
-# The following is a portable way to say mkdir -p
-# To see which directories are created, change the if 0 to if 1
-MKPATH = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e mkpath
 
-# This helps us to minimize the effect of the .exists files A yet
-# better solution would be to have a stable file in the perl
-# distribution with a timestamp of zero. But this solution doesn't
-# need any changes to the core distribution and works with older perls
-EQUALIZE_TIMESTAMP = $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e eqtime
-
-# Here we warn users that an old packlist file was found somewhere,
-# and that they should call some uninstall routine
-WARN_IF_OLD_PACKLIST = $(PERL) -lwe "exit unless -f $$ARGV[0];" \
--e "print 'WARNING: I have found an old package in';" \
--e "print '	', $$ARGV[0], '.';" \
--e "print 'Please make sure the two installations are not conflicting';"
-
-UNINST=0
-VERBINST=1
-
-MOD_INSTALL = $(PERL) -I$(INST_LIB) -I$(PERL_LIB) -MExtUtils::Install \
--e "install({ @ARGV },'$(VERBINST)',0,'$(UNINST)');"
-
-DOC_INSTALL = $(PERL) -e "$$\=\"\n\n\";" \
--e "print '=head2 ', scalar(localtime), ': C<', shift, '>', ' L<', shift, '>';" \
--e "print '=over 4';" \
--e "while (defined($$key = shift) and defined($$val = shift)) { print '=item *';print 'C<', \"$$key: $$val\", '>'; }" \
--e "print '=back';"
-
-UNINSTALL =   $(PERL) -MExtUtils::Install \
--e "uninstall($$ARGV[0],1,1); print \"\nUninstall is deprecated. Please check the";" \
--e "print \" packlist above carefully.\n  There may be errors. Remove the\";" \
--e "print \" appropriate files manually.\n  Sorry for the inconveniences.\n\""
+# --- MakeMaker makemakerdflt section:
+makemakerdflt: all
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker dist section:
-
-DISTVNAME = $(DISTNAME)-$(VERSION)
-TAR  = tar
+TAR = tar
 TARFLAGS = cvf
-ZIP  = zip
+ZIP = zip
 ZIPFLAGS = -r
 COMPRESS = gzip -9f
 SUFFIX = gz
 SHAR = shar
-PREOP = @$(NOOP)
-POSTOP = @$(NOOP)
-TO_UNIX = @$(NOOP)
+PREOP = $(NOECHO) $(NOOP)
+POSTOP = $(NOECHO) $(NOOP)
+TO_UNIX = $(NOECHO) $(NOOP)
 CI = ci -u
 RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
+DISTNAME = Win32-Clipboard
+DISTVNAME = Win32-Clipboard-0.52
 
 
 # --- MakeMaker macro section:
@@ -245,11 +262,10 @@ DIST_DEFAULT = tardist
 
 # --- MakeMaker cflags section:
 
-CCFLAGS = -O2 -MD -DNDEBUG -TP -GX -DWIN32 -D_CONSOLE -DNO_STRICT -DHAVE_DES_FCRYPT -DPERL_OBJECT
-OPTIMIZE = -O2 -MD -DNDEBUG -TP -GX
+CCFLAGS = -nologo -Gf -W3 -MD -Zi -DNDEBUG -O1 -DWIN32 -D_CONSOLE -DNO_STRICT -DHAVE_DES_FCRYPT -DNO_HASH_SEED -DPERL_IMPLICIT_CONTEXT -DPERL_IMPLICIT_SYS -DUSE_PERLIO -DPERL_MSVCRT_READFIX
+OPTIMIZE = -MD -Zi -DNDEBUG -O1
 PERLTYPE = 
-LARGE = 
-SPLIT = 
+MPOLLUTE = 
 
 
 # --- MakeMaker const_loadlibs section:
@@ -257,15 +273,16 @@ SPLIT =
 # Win32::Clipboard might depend on some other libraries:
 # See ExtUtils::Liblist for details
 #
-EXTRALIBS = C:\vs\vc\lib\user32.lib C:\vs\vc\lib\oldnames.lib C:\vs\vc\lib\kernel32.lib C:\vs\vc\lib\user32.lib C:\vs\vc\lib\gdi32.lib C:\vs\vc\lib\winspool.lib C:\vs\vc\lib\comdlg32.lib C:\vs\vc\lib\advapi32.lib C:\vs\vc\lib\shell32.lib C:\vs\vc\lib\ole32.lib C:\vs\vc\lib\oleaut32.lib C:\vs\vc\lib\netapi32.lib C:\vs\vc\lib\uuid.lib C:\vs\vc\lib\wsock32.lib C:\vs\vc\lib\mpr.lib C:\vs\vc\lib\winmm.lib C:\vs\vc\lib\version.lib C:\vs\vc\lib\odbc32.lib C:\vs\vc\lib\odbccp32.lib p:\lib\CORE\PerlCRT.lib
-LDLOADLIBS = C:\vs\vc\lib\user32.lib C:\vs\vc\lib\oldnames.lib C:\vs\vc\lib\kernel32.lib C:\vs\vc\lib\user32.lib C:\vs\vc\lib\gdi32.lib C:\vs\vc\lib\winspool.lib C:\vs\vc\lib\comdlg32.lib C:\vs\vc\lib\advapi32.lib C:\vs\vc\lib\shell32.lib C:\vs\vc\lib\ole32.lib C:\vs\vc\lib\oleaut32.lib C:\vs\vc\lib\netapi32.lib C:\vs\vc\lib\uuid.lib C:\vs\vc\lib\wsock32.lib C:\vs\vc\lib\mpr.lib C:\vs\vc\lib\winmm.lib C:\vs\vc\lib\version.lib C:\vs\vc\lib\odbc32.lib C:\vs\vc\lib\odbccp32.lib p:\lib\CORE\PerlCRT.lib
+EXTRALIBS = "C:\Program Files\Microsoft SDK\Lib\user32.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\oldnames.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\kernel32.lib" "C:\Program Files\Microsoft SDK\Lib\user32.lib" "C:\Program Files\Microsoft SDK\Lib\gdi32.lib" "C:\Program Files\Microsoft SDK\Lib\winspool.lib" "C:\Program Files\Microsoft SDK\Lib\comdlg32.lib" "C:\Program Files\Microsoft SDK\Lib\advapi32.lib" "C:\Program Files\Microsoft SDK\Lib\shell32.lib" "C:\Program Files\Microsoft SDK\Lib\ole32.lib" "C:\Program Files\Microsoft SDK\Lib\oleaut32.lib" "C:\Program Files\Microsoft SDK\Lib\netapi32.lib" "C:\Program Files\Microsoft SDK\Lib\uuid.lib" "C:\Program Files\Microsoft SDK\Lib\wsock32.lib" "C:\Program Files\Microsoft SDK\Lib\mpr.lib" "C:\Program Files\Microsoft SDK\Lib\winmm.lib" "C:\Program Files\Microsoft SDK\Lib\version.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\msvcrt.lib"
+LDLOADLIBS = "C:\Program Files\Microsoft SDK\Lib\user32.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\oldnames.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\kernel32.lib" "C:\Program Files\Microsoft SDK\Lib\user32.lib" "C:\Program Files\Microsoft SDK\Lib\gdi32.lib" "C:\Program Files\Microsoft SDK\Lib\winspool.lib" "C:\Program Files\Microsoft SDK\Lib\comdlg32.lib" "C:\Program Files\Microsoft SDK\Lib\advapi32.lib" "C:\Program Files\Microsoft SDK\Lib\shell32.lib" "C:\Program Files\Microsoft SDK\Lib\ole32.lib" "C:\Program Files\Microsoft SDK\Lib\oleaut32.lib" "C:\Program Files\Microsoft SDK\Lib\netapi32.lib" "C:\Program Files\Microsoft SDK\Lib\uuid.lib" "C:\Program Files\Microsoft SDK\Lib\wsock32.lib" "C:\Program Files\Microsoft SDK\Lib\mpr.lib" "C:\Program Files\Microsoft SDK\Lib\winmm.lib" "C:\Program Files\Microsoft SDK\Lib\version.lib" "C:\Program Files\Microsoft Visual C++ Toolkit 2003\lib\msvcrt.lib"
 BSLOADLIBS = 
 LD_RUN_PATH = 
 
 
 # --- MakeMaker const_cccmd section:
-CCCMD = $(CC) -c $(INC) $(CCFLAGS) $(OPTIMIZE) \
-	$(PERLTYPE) $(LARGE) $(SPLIT) $(DEFINE_VERSION) \
+CCCMD = $(CC) -c $(PASTHRU_INC) $(INC) \
+	$(CCFLAGS) $(OPTIMIZE) \
+	$(PERLTYPE) $(MPOLLUTE) $(DEFINE_VERSION) \
 	$(XS_DEFINE_VERSION)
 
 # --- MakeMaker post_constants section:
@@ -274,19 +291,35 @@ CCCMD = $(CC) -c $(INC) $(CCFLAGS) $(OPTIMIZE) \
 # --- MakeMaker pasthru section:
 PASTHRU = -nologo
 
+# --- MakeMaker special_targets section:
+.SUFFIXES: .xs .c .C .cpp .i .s .cxx .cc $(OBJ_EXT)
+
+.PHONY: all config static dynamic test linkext manifest
+
+
+
 # --- MakeMaker c_o section:
 
+.c.i:
+	cl -nologo -E -c $(PASTHRU_INC) $(INC) \
+	$(CCFLAGS) $(OPTIMIZE) \
+	$(PERLTYPE) $(MPOLLUTE) $(DEFINE_VERSION) \
+	$(XS_DEFINE_VERSION) $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.c > $*.i
+
+.c.s:
+	$(CCCMD) -S $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.c
+
 .c$(OBJ_EXT):
-	$(CCCMD) $(CCCDLFLAGS) -I$(PERL_INC) $(DEFINE) $*.c
+	$(CCCMD) $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.c
 
 .cpp$(OBJ_EXT):
-	$(CCCMD) $(CCCDLFLAGS) -I$(PERL_INC) $(DEFINE) $*.cpp
+	$(CCCMD) $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.cpp
 
 .cxx$(OBJ_EXT):
-	$(CCCMD) $(CCCDLFLAGS) -I$(PERL_INC) $(DEFINE) $*.cxx
+	$(CCCMD) $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.cxx
 
 .cc$(OBJ_EXT):
-	$(CCCMD) $(CCCDLFLAGS) -I$(PERL_INC) $(DEFINE) $*.cc
+	$(CCCMD) $(CCCDLFLAGS) "-I$(PERL_INC)" $(PASTHRU_DEFINE) $(DEFINE) $*.cc
 
 
 # --- MakeMaker xs_c section:
@@ -299,109 +332,84 @@ PASTHRU = -nologo
 
 
 # --- MakeMaker top_targets section:
+all :: pure_all
+	$(NOECHO) $(NOOP)
 
-#all ::	config $(INST_PM) subdirs linkext manifypods
-
-all :: pure_all manifypods
-	@$(NOOP)
 
 pure_all :: config pm_to_blib subdirs linkext
-	@$(NOOP)
+	$(NOECHO) $(NOOP)
 
 subdirs :: $(MYEXTLIB)
-	@$(NOOP)
+	$(NOECHO) $(NOOP)
 
-config :: Makefile $(INST_LIBDIR)\.exists
-	@$(NOOP)
+config :: $(FIRST_MAKEFILE) $(INST_LIBDIR)$(DIRFILESEP).exists
+	$(NOECHO) $(NOOP)
 
-config :: $(INST_ARCHAUTODIR)\.exists
-	@$(NOOP)
+config :: $(INST_ARCHAUTODIR)$(DIRFILESEP).exists
+	$(NOECHO) $(NOOP)
 
-config :: $(INST_AUTODIR)\.exists
-	@$(NOOP)
+config :: $(INST_AUTODIR)$(DIRFILESEP).exists
+	$(NOECHO) $(NOOP)
 
-config :: Version_check
-	@$(NOOP)
+$(INST_AUTODIR)\.exists :: C:\Perl\lib\CORE\perl.h
+	$(NOECHO) $(MKPATH) $(INST_AUTODIR)
+	$(NOECHO) $(EQUALIZE_TIMESTAMP) C:\Perl\lib\CORE\perl.h $(INST_AUTODIR)\.exists
 
+	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_AUTODIR)
 
-$(INST_AUTODIR)\.exists :: P:\lib\CORE\perl.h
-	@$(MKPATH) $(INST_AUTODIR)
-	@$(EQUALIZE_TIMESTAMP) P:\lib\CORE\perl.h $(INST_AUTODIR)\.exists
+$(INST_LIBDIR)\.exists :: C:\Perl\lib\CORE\perl.h
+	$(NOECHO) $(MKPATH) $(INST_LIBDIR)
+	$(NOECHO) $(EQUALIZE_TIMESTAMP) C:\Perl\lib\CORE\perl.h $(INST_LIBDIR)\.exists
 
-	-@$(CHMOD) $(PERM_RWX) $(INST_AUTODIR)
+	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_LIBDIR)
 
-$(INST_LIBDIR)\.exists :: P:\lib\CORE\perl.h
-	@$(MKPATH) $(INST_LIBDIR)
-	@$(EQUALIZE_TIMESTAMP) P:\lib\CORE\perl.h $(INST_LIBDIR)\.exists
+$(INST_ARCHAUTODIR)\.exists :: C:\Perl\lib\CORE\perl.h
+	$(NOECHO) $(MKPATH) $(INST_ARCHAUTODIR)
+	$(NOECHO) $(EQUALIZE_TIMESTAMP) C:\Perl\lib\CORE\perl.h $(INST_ARCHAUTODIR)\.exists
 
-	-@$(CHMOD) $(PERM_RWX) $(INST_LIBDIR)
-
-$(INST_ARCHAUTODIR)\.exists :: P:\lib\CORE\perl.h
-	@$(MKPATH) $(INST_ARCHAUTODIR)
-	@$(EQUALIZE_TIMESTAMP) P:\lib\CORE\perl.h $(INST_ARCHAUTODIR)\.exists
-
-	-@$(CHMOD) $(PERM_RWX) $(INST_ARCHAUTODIR)
-
-config :: $(INST_MAN3DIR)\.exists
-	@$(NOOP)
-
-
-$(INST_MAN3DIR)\.exists :: P:\lib\CORE\perl.h
-	@$(MKPATH) $(INST_MAN3DIR)
-	@$(EQUALIZE_TIMESTAMP) P:\lib\CORE\perl.h $(INST_MAN3DIR)\.exists
-
-	-@$(CHMOD) $(PERM_RWX) $(INST_MAN3DIR)
+	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_ARCHAUTODIR)
 
 help:
 	perldoc ExtUtils::MakeMaker
-
-Version_check:
-	@$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) \
-		-MExtUtils::MakeMaker=Version_check \
-		-e "Version_check('$(MM_VERSION)')"
 
 
 # --- MakeMaker linkext section:
 
 linkext :: $(LINKTYPE)
-	@$(NOOP)
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker dlsyms section:
 
 Clipboard.def: Makefile.PL
-	$(PERL) "-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" -MExtUtils::Mksymlists \
-     -e "Mksymlists('NAME' => 'Win32::Clipboard', 'DLBASE' => '$(BASEEXT)', 'DL_FUNCS' => {  }, 'FUNCLIST' => [], 'IMPORTS' => {  }, 'DL_VARS' => []);"
+	$(PERLRUN) -MExtUtils::Mksymlists \
+     -e "Mksymlists('NAME'=>\"Win32::Clipboard\", 'DLBASE' => '$(BASEEXT)', 'DL_FUNCS' => {  }, 'FUNCLIST' => [], 'IMPORTS' => {  }, 'DL_VARS' => []);"
 
 
 # --- MakeMaker dynamic section:
 
-## $(INST_PM) has been moved to the all: target.
-## It remains here for awhile to allow for old usage: "make dynamic"
-#dynamic :: Makefile $(INST_DYNAMIC) $(INST_BOOT) $(INST_PM)
-dynamic :: Makefile $(INST_DYNAMIC) $(INST_BOOT)
-	@$(NOOP)
+dynamic :: $(FIRST_MAKEFILE) $(INST_DYNAMIC) $(INST_BOOT)
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker dynamic_bs section:
-
-BOOTSTRAP = Clipboard.bs
+BOOTSTRAP = $(BASEEXT).bs
 
 # As Mkbootstrap might not write a file (if none is required)
 # we use touch to prevent make continually trying to remake it.
 # The DynaLoader only reads a non-empty file.
-$(BOOTSTRAP): Makefile  $(INST_ARCHAUTODIR)\.exists
-	@echo "Running Mkbootstrap for $(NAME) ($(BSLOADLIBS))"
-	@$(PERL) "-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" \
-		-MExtUtils::Mkbootstrap \
+$(BOOTSTRAP): $(FIRST_MAKEFILE) $(BOOTDEP) $(INST_ARCHAUTODIR)$(DIRFILESEP).exists
+	$(NOECHO) $(ECHO) "Running Mkbootstrap for $(NAME) ($(BSLOADLIBS))"
+	$(NOECHO) $(PERLRUN) \
+		"-MExtUtils::Mkbootstrap" \
 		-e "Mkbootstrap('$(BASEEXT)','$(BSLOADLIBS)');"
-	@$(TOUCH) $(BOOTSTRAP)
-	$(CHMOD) 644 $@
+	$(NOECHO) $(TOUCH) $(BOOTSTRAP)
+	$(CHMOD) $(PERM_RW) $@
 
-$(INST_BOOT): $(BOOTSTRAP) $(INST_ARCHAUTODIR)\.exists
-	@$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf $(INST_BOOT)
-	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e cp $(BOOTSTRAP) $(INST_BOOT)
-	$(CHMOD) 644 $@
+$(INST_BOOT): $(BOOTSTRAP) $(INST_ARCHAUTODIR)$(DIRFILESEP).exists
+	$(NOECHO) $(RM_RF) $(INST_BOOT)
+	-$(CP) $(BOOTSTRAP) $(INST_BOOT)
+	$(CHMOD) $(PERM_RW) $@
 
 
 # --- MakeMaker dynamic_lib section:
@@ -411,33 +419,38 @@ $(INST_BOOT): $(BOOTSTRAP) $(INST_ARCHAUTODIR)\.exists
 OTHERLDFLAGS = 
 INST_DYNAMIC_DEP = 
 
-$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(BOOTSTRAP) $(INST_ARCHAUTODIR)\.exists $(EXPORT_LIST) $(PERL_ARCHIVE) $(INST_DYNAMIC_DEP)
+$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(BOOTSTRAP) $(INST_ARCHAUTODIR)$(DIRFILESEP).exists $(EXPORT_LIST) $(PERL_ARCHIVE) $(INST_DYNAMIC_DEP)
 	$(LD) -out:$@ $(LDDLFLAGS) $(LDFROM) $(OTHERLDFLAGS) $(MYEXTLIB) $(PERL_ARCHIVE) $(LDLOADLIBS) -def:$(EXPORT_LIST)
-	$(CHMOD) 755 $@
+	$(CHMOD) $(PERM_RWX) $@
 
 
 # --- MakeMaker static section:
 
 ## $(INST_PM) has been moved to the all: target.
 ## It remains here for awhile to allow for old usage: "make static"
-#static :: Makefile $(INST_STATIC) $(INST_PM)
-static :: Makefile $(INST_STATIC)
-	@$(NOOP)
+static :: $(FIRST_MAKEFILE) $(INST_STATIC)
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker static_lib section:
-
-$(INST_STATIC): $(OBJECT) $(MYEXTLIB) $(INST_ARCHAUTODIR)\.exists
+$(INST_STATIC): $(OBJECT) $(MYEXTLIB) $(INST_ARCHAUTODIR)$(DIRFILESEP).exists
 	$(RM_RF) $@
 	$(AR) -out:$@ $(OBJECT)
-	@echo "$(EXTRALIBS)" > $(INST_ARCHAUTODIR)\extralibs.ld
-	$(CHMOD) 755 $@
+	$(CHMOD) $(PERM_RWX) $@
+	$(NOECHO) $(ECHO) "$(EXTRALIBS)" > $(INST_ARCHAUTODIR)\extralibs.ld
+
 
 
 # --- MakeMaker manifypods section:
 
-manifypods :
-	@$(NOOP)
+POD2MAN_EXE = $(PERLRUN) "-MExtUtils::Command::MM" -e pod2man "--"
+POD2MAN = $(POD2MAN_EXE)
+
+
+manifypods : pure_all 
+	$(NOECHO) $(NOOP)
+
+
 
 
 # --- MakeMaker processPL section:
@@ -450,53 +463,89 @@ manifypods :
 
 # none
 
+# --- MakeMaker clean_subdirs section:
+clean_subdirs :
+	$(NOECHO) $(NOOP)
+
+
 # --- MakeMaker clean section:
 
 # Delete temporary files but do not touch installed files. We don't delete
 # the Makefile here so a later make realclean still has a makefile to use.
 
+clean :: clean_subdirs
+	-$(RM_RF) Clipboard.cpp ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all $(INST_ARCHAUTODIR)/extralibs.ld perlmain.c tmon.out mon.out so_locations pm_to_blib *$(OBJ_EXT) *$(LIB_EXT) perl.exe perl perl$(EXE_EXT) $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def lib$(BASEEXT).def $(BASEEXT).exp $(BASEEXT).x core core.*perl.*.? *perl.core core.[0-9] core.[0-9][0-9] core.[0-9][0-9][0-9] core.[0-9][0-9][0-9][0-9] core.[0-9][0-9][0-9][0-9][0-9]
+	-$(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
 clean ::
-	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf Clipboard.cpp ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all perlmain.c mon.out core so_locations pm_to_blib *~ */*~ */*/*~ *$(OBJ_EXT) *$(LIB_EXT) perl.exe $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def $(BASEEXT).exp
-	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e mv Makefile Makefile.old $(DEV_NULL)
+	-$(RM_F) *.pdb
+
+
+
+# --- MakeMaker realclean_subdirs section:
+realclean_subdirs :
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker realclean section:
 
 # Delete temporary files (via clean) and also delete installed files
-realclean purge ::  clean
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf $(INST_AUTODIR) $(INST_ARCHAUTODIR)
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_f $(INST_DYNAMIC) $(INST_BOOT)
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_f $(INST_STATIC)
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_f $(INST_LIBDIR)\Clipboard.pm
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf Makefile Makefile.old
+realclean purge ::  clean realclean_subdirs
+	$(RM_RF) $(INST_AUTODIR) $(INST_ARCHAUTODIR)
+	$(RM_RF) $(DISTVNAME)
+	$(RM_F) $(INST_DYNAMIC) $(INST_BOOT)
+	$(RM_F) $(INST_STATIC)
+	$(RM_F)  $(INST_LIB)\Win32\save-bmp.pl $(INST_LIB)\Win32\save-png.pl $(MAKEFILE_OLD) $(FIRST_MAKEFILE) $(INST_LIB)\Win32\Clipboard.pm
+
+
+# --- MakeMaker metafile section:
+metafile :
+	$(NOECHO) $(ECHO) "# http://module-build.sourceforge.net/META-spec.html" > META.yml
+	$(NOECHO) $(ECHO) "#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#" >> META.yml
+	$(NOECHO) $(ECHO) "name:         Win32-Clipboard" >> META.yml
+	$(NOECHO) $(ECHO) "version:      0.52" >> META.yml
+	$(NOECHO) $(ECHO) "version_from: Clipboard.pm" >> META.yml
+	$(NOECHO) $(ECHO) "installdirs:  site" >> META.yml
+	$(NOECHO) $(ECHO) "requires:" >> META.yml
+	$(NOECHO) $(ECHO) "" >> META.yml
+	$(NOECHO) $(ECHO) "distribution_type: module" >> META.yml
+	$(NOECHO) $(ECHO) "generated_by: ExtUtils::MakeMaker version 6.17" >> META.yml
+
+
+# --- MakeMaker metafile_addtomanifest section:
+metafile_addtomanifest:
+	$(NOECHO) $(PERLRUN) -MExtUtils::Manifest=maniadd -e "eval { maniadd({q{META.yml} => q{Module meta-data (added by MakeMaker)}}) } \
+    or print \"Could not add META.yml to MANIFEST: $${'@'}\n\""
 
 
 # --- MakeMaker dist_basics section:
-
 distclean :: realclean distcheck
+	$(NOECHO) $(NOOP)
 
 distcheck :
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=fullcheck \
-		-e fullcheck
+	$(PERLRUN) "-MExtUtils::Manifest=fullcheck" -e fullcheck
 
 skipcheck :
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=skipcheck \
-		-e skipcheck
+	$(PERLRUN) "-MExtUtils::Manifest=skipcheck" -e skipcheck
 
 manifest :
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=mkmanifest \
-		-e mkmanifest
+	$(PERLRUN) "-MExtUtils::Manifest=mkmanifest" -e mkmanifest
+
+veryclean : realclean
+	$(RM_F) *~ *.orig */*~ */*.orig
+
 
 
 # --- MakeMaker dist_core section:
 
-dist : $(DIST_DEFAULT)
-	@$(PERL) -le "print \"Warning: Makefile possibly out of date with $$vf\" if " \
-	    -e "-e ($$vf=\"$(VERSION_FROM)\") and -M $$vf < -M \"Makefile\";"
+dist : $(DIST_DEFAULT) $(FIRST_MAKEFILE)
+	$(NOECHO) $(PERLRUN) -l -e "print 'Warning: Makefile possibly out of date with $(VERSION_FROM)'\
+    if -e '$(VERSION_FROM)' and -M '$(VERSION_FROM)' < -M '$(FIRST_MAKEFILE)';"
 
 tardist : $(DISTVNAME).tar$(SUFFIX)
+	$(NOECHO) $(NOOP)
 
-zipdist : $(DISTVNAME).zip
+uutardist : $(DISTVNAME).tar$(SUFFIX)
+	uuencode $(DISTVNAME).tar$(SUFFIX) $(DISTVNAME).tar$(SUFFIX) > $(DISTVNAME).tar$(SUFFIX)_uu
 
 $(DISTVNAME).tar$(SUFFIX) : distdir
 	$(PREOP)
@@ -506,16 +555,14 @@ $(DISTVNAME).tar$(SUFFIX) : distdir
 	$(COMPRESS) $(DISTVNAME).tar
 	$(POSTOP)
 
+zipdist : $(DISTVNAME).zip
+	$(NOECHO) $(NOOP)
+
 $(DISTVNAME).zip : distdir
 	$(PREOP)
 	$(ZIP) $(ZIPFLAGS) $(DISTVNAME).zip $(DISTVNAME)
 	$(RM_RF) $(DISTVNAME)
 	$(POSTOP)
-
-uutardist : $(DISTVNAME).tar$(SUFFIX)
-	uuencode $(DISTVNAME).tar$(SUFFIX) \
-		$(DISTVNAME).tar$(SUFFIX) > \
-		$(DISTVNAME).tar$(SUFFIX)_uu
 
 shdist : distdir
 	$(PREOP)
@@ -524,29 +571,29 @@ shdist : distdir
 	$(POSTOP)
 
 
-# --- MakeMaker dist_dir section:
-
-distdir :
+# --- MakeMaker distdir section:
+distdir : metafile metafile_addtomanifest
 	$(RM_RF) $(DISTVNAME)
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=manicopy,maniread \
+	$(PERLRUN) "-MExtUtils::Manifest=manicopy,maniread" \
 		-e "manicopy(maniread(),'$(DISTVNAME)', '$(DIST_CP)');"
+
 
 
 # --- MakeMaker dist_test section:
 
 disttest : distdir
-	cd $(DISTVNAME) && $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) Makefile.PL
-	cd $(DISTVNAME) && $(MAKE)
-	cd $(DISTVNAME) && $(MAKE) test
+	cd $(DISTVNAME) && $(ABSPERLRUN) Makefile.PL
+	cd $(DISTVNAME) && $(MAKE) $(PASTHRU)
+	cd $(DISTVNAME) && $(MAKE) test $(PASTHRU)
 
 
 # --- MakeMaker dist_ci section:
 
 ci :
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=maniread \
-		-e "@all = keys %{ maniread() };" \
-		-e "print(\"Executing $(CI) @all\n\"); system(\"$(CI) @all\");" \
-		-e "print(\"Executing $(RCS_LABEL) ...\n\"); system(\"$(RCS_LABEL) @all\");"
+	$(PERLRUN) "-MExtUtils::Manifest=maniread" \
+	  -e "@all = keys %{ maniread() };" \
+	  -e "print(qq{Executing $(CI) @all\n}); system(qq{$(CI) @all});" \
+	  -e "print(qq{Executing $(RCS_LABEL) ...\n}); system(qq{$(RCS_LABEL) @all});"
 
 
 # --- MakeMaker install section:
@@ -557,94 +604,153 @@ install_perl :: all pure_perl_install doc_perl_install
 
 install_site :: all pure_site_install doc_site_install
 
-install_ :: install_site
-	@echo INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
+install_vendor :: all pure_vendor_install doc_vendor_install
 
 pure_install :: pure_$(INSTALLDIRS)_install
 
 doc_install :: doc_$(INSTALLDIRS)_install
-	@echo Appending installation info to $(INSTALLARCHLIB)/perllocal.pod
 
 pure__install : pure_site_install
-	@echo INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
+	$(NOECHO) $(ECHO) INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
 
 doc__install : doc_site_install
-	@echo INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
+	$(NOECHO) $(ECHO) INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
 
 pure_perl_install ::
-	@$(MOD_INSTALL) \
+	$(NOECHO) $(MOD_INSTALL) \
 		read $(PERL_ARCHLIB)\auto\$(FULLEXT)\.packlist \
-		write $(INSTALLARCHLIB)\auto\$(FULLEXT)\.packlist \
-		$(INST_LIB) $(INSTALLPRIVLIB) \
-		$(INST_ARCHLIB) $(INSTALLARCHLIB) \
-		$(INST_BIN) $(INSTALLBIN) \
-		$(INST_SCRIPT) $(INSTALLSCRIPT) \
-		$(INST_MAN1DIR) $(INSTALLMAN1DIR) \
-		$(INST_MAN3DIR) $(INSTALLMAN3DIR)
-	@$(WARN_IF_OLD_PACKLIST) \
+		write $(DESTINSTALLARCHLIB)\auto\$(FULLEXT)\.packlist \
+		$(INST_LIB) $(DESTINSTALLPRIVLIB) \
+		$(INST_ARCHLIB) $(DESTINSTALLARCHLIB) \
+		$(INST_BIN) $(DESTINSTALLBIN) \
+		$(INST_SCRIPT) $(DESTINSTALLSCRIPT) \
+		$(INST_MAN1DIR) $(DESTINSTALLMAN1DIR) \
+		$(INST_MAN3DIR) $(DESTINSTALLMAN3DIR)
+	$(NOECHO) $(WARN_IF_OLD_PACKLIST) \
 		$(SITEARCHEXP)\auto\$(FULLEXT)
 
 
 pure_site_install ::
-	@$(MOD_INSTALL) \
+	$(NOECHO) $(MOD_INSTALL) \
 		read $(SITEARCHEXP)\auto\$(FULLEXT)\.packlist \
-		write $(INSTALLSITEARCH)\auto\$(FULLEXT)\.packlist \
-		$(INST_LIB) $(INSTALLSITELIB) \
-		$(INST_ARCHLIB) $(INSTALLSITEARCH) \
-		$(INST_BIN) $(INSTALLBIN) \
-		$(INST_SCRIPT) $(INSTALLSCRIPT) \
-		$(INST_MAN1DIR) $(INSTALLMAN1DIR) \
-		$(INST_MAN3DIR) $(INSTALLMAN3DIR)
-	@$(WARN_IF_OLD_PACKLIST) \
+		write $(DESTINSTALLSITEARCH)\auto\$(FULLEXT)\.packlist \
+		$(INST_LIB) $(DESTINSTALLSITELIB) \
+		$(INST_ARCHLIB) $(DESTINSTALLSITEARCH) \
+		$(INST_BIN) $(DESTINSTALLSITEBIN) \
+		$(INST_SCRIPT) $(DESTINSTALLSCRIPT) \
+		$(INST_MAN1DIR) $(DESTINSTALLSITEMAN1DIR) \
+		$(INST_MAN3DIR) $(DESTINSTALLSITEMAN3DIR)
+	$(NOECHO) $(WARN_IF_OLD_PACKLIST) \
 		$(PERL_ARCHLIB)\auto\$(FULLEXT)
 
+pure_vendor_install ::
+	$(NOECHO) $(MOD_INSTALL) \
+		read $(VENDORARCHEXP)\auto\$(FULLEXT)\.packlist \
+		write $(DESTINSTALLVENDORARCH)\auto\$(FULLEXT)\.packlist \
+		$(INST_LIB) $(DESTINSTALLVENDORLIB) \
+		$(INST_ARCHLIB) $(DESTINSTALLVENDORARCH) \
+		$(INST_BIN) $(DESTINSTALLVENDORBIN) \
+		$(INST_SCRIPT) $(DESTINSTALLSCRIPT) \
+		$(INST_MAN1DIR) $(DESTINSTALLVENDORMAN1DIR) \
+		$(INST_MAN3DIR) $(DESTINSTALLVENDORMAN3DIR)
+
 doc_perl_install ::
-	-@$(DOC_INSTALL) \
+	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
+	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
+	-$(NOECHO) $(DOC_INSTALL) \
 		"Module" "$(NAME)" \
 		"installed into" "$(INSTALLPRIVLIB)" \
 		LINKTYPE "$(LINKTYPE)" \
 		VERSION "$(VERSION)" \
 		EXE_FILES "$(EXE_FILES)" \
-		>> $(INSTALLARCHLIB)\perllocal.pod
+		>> $(DESTINSTALLARCHLIB)\perllocal.pod
 
 doc_site_install ::
-	-@$(DOC_INSTALL) \
+	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
+	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
+	-$(NOECHO) $(DOC_INSTALL) \
 		"Module" "$(NAME)" \
 		"installed into" "$(INSTALLSITELIB)" \
 		LINKTYPE "$(LINKTYPE)" \
 		VERSION "$(VERSION)" \
 		EXE_FILES "$(EXE_FILES)" \
-		>> $(INSTALLARCHLIB)\perllocal.pod
+		>> $(DESTINSTALLARCHLIB)\perllocal.pod
+
+doc_vendor_install ::
+	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
+	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
+	-$(NOECHO) $(DOC_INSTALL) \
+		"Module" "$(NAME)" \
+		"installed into" "$(INSTALLVENDORLIB)" \
+		LINKTYPE "$(LINKTYPE)" \
+		VERSION "$(VERSION)" \
+		EXE_FILES "$(EXE_FILES)" \
+		>> $(DESTINSTALLARCHLIB)\perllocal.pod
 
 
 uninstall :: uninstall_from_$(INSTALLDIRS)dirs
 
 uninstall_from_perldirs ::
-	@$(UNINSTALL) $(PERL_ARCHLIB)\auto\$(FULLEXT)\.packlist
+	$(NOECHO) $(UNINSTALL) $(PERL_ARCHLIB)\auto\$(FULLEXT)\.packlist
 
 uninstall_from_sitedirs ::
-	@$(UNINSTALL) $(SITEARCHEXP)\auto\$(FULLEXT)\.packlist
+	$(NOECHO) $(UNINSTALL) $(SITEARCHEXP)\auto\$(FULLEXT)\.packlist
+
+uninstall_from_vendordirs ::
+	$(NOECHO) $(UNINSTALL) $(VENDORARCHEXP)\auto\$(FULLEXT)\.packlist
 
 
 # --- MakeMaker force section:
 # Phony target to force checking subdirectories.
 FORCE:
-	@$(NOOP)
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker perldepend section:
 
 PERL_HDRS = \
-$(PERL_INC)/EXTERN.h       $(PERL_INC)/gv.h           $(PERL_INC)/pp.h       \
-$(PERL_INC)/INTERN.h       $(PERL_INC)/handy.h        $(PERL_INC)/proto.h    \
-$(PERL_INC)/XSUB.h         $(PERL_INC)/hv.h           $(PERL_INC)/regcomp.h  \
-$(PERL_INC)/av.h           $(PERL_INC)/keywords.h     $(PERL_INC)/regexp.h   \
-$(PERL_INC)/config.h       $(PERL_INC)/mg.h           $(PERL_INC)/scope.h    \
-$(PERL_INC)/cop.h          $(PERL_INC)/op.h           $(PERL_INC)/sv.h	     \
-$(PERL_INC)/cv.h           $(PERL_INC)/opcode.h       $(PERL_INC)/unixish.h  \
-$(PERL_INC)/dosish.h       $(PERL_INC)/patchlevel.h   $(PERL_INC)/util.h     \
-$(PERL_INC)/embed.h        $(PERL_INC)/perl.h         $(PERL_INC)/iperlsys.h \
-$(PERL_INC)/form.h         $(PERL_INC)/perly.h
+	$(PERL_INC)/EXTERN.h		\
+	$(PERL_INC)/INTERN.h		\
+	$(PERL_INC)/XSUB.h		\
+	$(PERL_INC)/av.h		\
+	$(PERL_INC)/cc_runtime.h	\
+	$(PERL_INC)/config.h		\
+	$(PERL_INC)/cop.h		\
+	$(PERL_INC)/cv.h		\
+	$(PERL_INC)/dosish.h		\
+	$(PERL_INC)/embed.h		\
+	$(PERL_INC)/embedvar.h		\
+	$(PERL_INC)/fakethr.h		\
+	$(PERL_INC)/form.h		\
+	$(PERL_INC)/gv.h		\
+	$(PERL_INC)/handy.h		\
+	$(PERL_INC)/hv.h		\
+	$(PERL_INC)/intrpvar.h		\
+	$(PERL_INC)/iperlsys.h		\
+	$(PERL_INC)/keywords.h		\
+	$(PERL_INC)/mg.h		\
+	$(PERL_INC)/nostdio.h		\
+	$(PERL_INC)/op.h		\
+	$(PERL_INC)/opcode.h		\
+	$(PERL_INC)/patchlevel.h	\
+	$(PERL_INC)/perl.h		\
+	$(PERL_INC)/perlio.h		\
+	$(PERL_INC)/perlsdio.h		\
+	$(PERL_INC)/perlsfio.h		\
+	$(PERL_INC)/perlvars.h		\
+	$(PERL_INC)/perly.h		\
+	$(PERL_INC)/pp.h		\
+	$(PERL_INC)/pp_proto.h		\
+	$(PERL_INC)/proto.h		\
+	$(PERL_INC)/regcomp.h		\
+	$(PERL_INC)/regexp.h		\
+	$(PERL_INC)/regnodes.h		\
+	$(PERL_INC)/scope.h		\
+	$(PERL_INC)/sv.h		\
+	$(PERL_INC)/thrdvar.h		\
+	$(PERL_INC)/thread.h		\
+	$(PERL_INC)/unixish.h		\
+	$(PERL_INC)/util.h
 
 $(OBJECT) : $(PERL_HDRS)
 
@@ -655,37 +761,33 @@ Clipboard.cpp : $(XSUBPPDEPS)
 
 $(OBJECT) : $(FIRST_MAKEFILE)
 
-# We take a very conservative approach here, but it\'s worth it.
+# We take a very conservative approach here, but it's worth it.
 # We move Makefile to Makefile.old here to avoid gnu make looping.
-Makefile : Makefile.PL $(CONFIGDEP)
-	@echo "Makefile out-of-date with respect to $?"
-	@echo "Cleaning current config before rebuilding Makefile..."
-	-@$(RM_F) Makefile.old
-	-@$(MV) Makefile Makefile.old
-	-$(MAKE) -f Makefile.old clean $(DEV_NULL) || $(NOOP)
-	$(PERL) "-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" Makefile.PL 
-	@echo "==> Your Makefile has been rebuilt. <=="
-	@echo "==> Please rerun the make command.  <=="
+$(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
+	$(NOECHO) $(ECHO) "Makefile out-of-date with respect to $?"
+	$(NOECHO) $(ECHO) "Cleaning current config before rebuilding Makefile..."
+	$(NOECHO) $(RM_F) $(MAKEFILE_OLD)
+	$(NOECHO) $(MV)   $(FIRST_MAKEFILE) $(MAKEFILE_OLD)
+	-$(MAKE) -f $(MAKEFILE_OLD) clean $(DEV_NULL) || $(NOOP)
+	$(PERLRUN) Makefile.PL 
+	$(NOECHO) $(ECHO) "==> Your Makefile has been rebuilt. <=="
+	$(NOECHO) $(ECHO) "==> Please rerun the make command.  <=="
 	false
 
-# To change behavior to :: would be nice, but would break Tk b9.02
-# so you find such a warning below the dist target.
-#Makefile :: $(VERSION_FROM)
-#	@echo "Warning: Makefile possibly out of date with $(VERSION_FROM)"
 
 
 # --- MakeMaker staticmake section:
 
 # --- MakeMaker makeaperl section ---
 MAP_TARGET    = perl
-FULLPERL      = P:\bin\perl.exe
+FULLPERL      = C:\Perl\bin\perl.exe
 
 $(MAP_TARGET) :: static $(MAKE_APERL_FILE)
 	$(MAKE) -f $(MAKE_APERL_FILE) $@
 
 $(MAKE_APERL_FILE) : $(FIRST_MAKEFILE)
-	@echo Writing \"$(MAKE_APERL_FILE)\" for this $(MAP_TARGET)
-	@$(PERL) -I$(INST_ARCHLIB) -I$(INST_LIB) -I$(PERL_ARCHLIB) -I$(PERL_LIB) \
+	$(NOECHO) $(ECHO) Writing \"$(MAKE_APERL_FILE)\" for this $(MAP_TARGET)
+	$(NOECHO) $(PERLRUNINST) \
 		Makefile.PL DIR= \
 		MAKEFILE=$(MAKE_APERL_FILE) LINKTYPE=static \
 		MAKEAPERL=1 NORECURS=1 CCCDLFLAGS=
@@ -696,7 +798,7 @@ $(MAKE_APERL_FILE) : $(FIRST_MAKEFILE)
 TEST_VERBOSE=0
 TEST_TYPE=test_$(LINKTYPE)
 TEST_FILE = test.pl
-TEST_FILES = t\TEST.T
+TEST_FILES = t\test.t
 TESTDB_SW = -d
 
 testdb :: testdb_$(LINKTYPE)
@@ -704,37 +806,44 @@ testdb :: testdb_$(LINKTYPE)
 test :: $(TEST_TYPE)
 
 test_dynamic :: pure_all
-	$(FULLPERL) -Mblib -I$(PERL_ARCHLIB) -I$(PERL_LIB) -e "use Test::Harness qw(&runtests $$verbose); $$verbose=$(TEST_VERBOSE); runtests @ARGV;" $(TEST_FILES)
+	$(FULLPERLRUN) "-MExtUtils::Command::MM" "-e" "test_harness($(TEST_VERBOSE), '$(INST_LIB)', '$(INST_ARCHLIB)')" $(TEST_FILES)
 
 testdb_dynamic :: pure_all
-	$(FULLPERL) $(TESTDB_SW) -I$(INST_ARCHLIB) -I$(INST_LIB) -I$(PERL_ARCHLIB) -I$(PERL_LIB) $(TEST_FILE)
+	$(FULLPERLRUN) $(TESTDB_SW) "-I$(INST_LIB)" "-I$(INST_ARCHLIB)" $(TEST_FILE)
 
 test_ : test_dynamic
 
 test_static :: pure_all $(MAP_TARGET)
-	./$(MAP_TARGET) -Mblib -I$(PERL_ARCHLIB) -I$(PERL_LIB) -e "use Test::Harness qw(&runtests $$verbose); $$verbose=$(TEST_VERBOSE); runtests @ARGV;" $(TEST_FILES)
+	./$(MAP_TARGET) "-MExtUtils::Command::MM" "-e" "test_harness($(TEST_VERBOSE), '$(INST_LIB)', '$(INST_ARCHLIB)')" $(TEST_FILES)
 
 testdb_static :: pure_all $(MAP_TARGET)
-	./$(MAP_TARGET) $(TESTDB_SW) -I$(INST_ARCHLIB) -I$(INST_LIB) -I$(PERL_ARCHLIB) -I$(PERL_LIB) $(TEST_FILE)
+	./$(MAP_TARGET) $(TESTDB_SW) "-I$(INST_LIB)" "-I$(INST_ARCHLIB)" $(TEST_FILE)
 
 
 
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Win32-Clipboard\" VERSION=\"0,51,0,0\">\n}. qq{\t<TITLE>Win32-Clipboard</TITLE>\n}. qq{\t<ABSTRACT>Interaction with the Windows clipboard</ABSTRACT>\n}. qq{\t<AUTHOR>Aldo Calpini &lt;dada\@perl.it&gt;</AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"MSWin32-x86-object\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Win32-Clipboard.ppd
+	$(NOECHO) $(ECHO) "<SOFTPKG NAME=\"$(DISTNAME)\" VERSION=\"0,52,0,0\">" > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "    <TITLE>$(DISTNAME)</TITLE>" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "    <ABSTRACT>Interaction with the Windows clipboard</ABSTRACT>" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "    <AUTHOR>Aldo Calpini &lt;dada@perl.it&gt;</AUTHOR>" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "    <IMPLEMENTATION>" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "        <OS NAME=\"$(OSNAME)\" />" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "        <ARCHITECTURE NAME=\"MSWin32-x86-multi-thread-5.8\" />" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "        <CODEBASE HREF=\"\" />" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "    </IMPLEMENTATION>" >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) "</SOFTPKG>" >> $(DISTNAME).ppd
+
 
 # --- MakeMaker pm_to_blib section:
 
 pm_to_blib: $(TO_INST_PM)
-	@$(PERL) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)" \
-	"-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" -MExtUtils::Install \
-        -e "pm_to_blib(qw[ <<pmfiles.dat ],'$(INST_LIB)\auto')"
-	
-$(PM_TO_BLIB)
-<<
-	@$(TOUCH) $@
-
+	$(NOECHO) $(PERLRUN) -MExtUtils::Install -e "pm_to_blib({@ARGV}, '$(INST_LIB)\auto', '$(PM_FILTER)')"\
+	  Clipboard.pm $(INST_LIB)\Win32\Clipboard.pm \
+	  save-bmp.pl $(INST_LIB)\Win32\save-bmp.pl \
+	  save-png.pl $(INST_LIB)\Win32\save-png.pl 
+	$(NOECHO) $(TOUCH) $@
 
 # --- MakeMaker selfdocument section:
 

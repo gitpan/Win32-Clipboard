@@ -3,8 +3,10 @@ package Win32::Clipboard;
 #
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
-# Version: 0.51
+# Version: 0.52
 # Author: Aldo Calpini <dada@perl.it>
+#
+# Modified by: Hideyo Imazu <himazu@gmail.com>
 #
 #######################################################################
 
@@ -63,7 +65,7 @@ sub AUTOLOAD {
 #######################################################################
 # STATIC OBJECT PROPERTIES
 #
-$VERSION = "0.51";
+$VERSION = "0.52";
 
 #######################################################################
 # FUNCTIONS
@@ -359,7 +361,9 @@ IsFormatAvailable() and GetAs() functions:
 
 =head1 AUTHOR
 
-Aldo Calpini <F<dada@perl.it>>
+This version was released by Hideyo Imazu <F<himazu@gmail.com>>.
+
+Aldo Calpini <F<dada@perl.it>> was the former maintainer.
 
 Original XS porting by Gurusamy Sarathy <F<gsar@activestate.com>>.
 
