@@ -3,7 +3,7 @@
 #
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
-# Version: 0.50
+# Version: 0.51
 # Created: 19 Nov 96
 # Author: Aldo Calpini <dada@divinf.it>
 #
@@ -229,101 +229,101 @@ constant(char *name, int arg)
 {
     errno = 0;
 	if (strEQ(name, "CF_TEXT"))
-		#ifdef CF_TEXT
+#ifdef CF_TEXT
 			return CF_TEXT;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_BITMAP"))
-		#ifdef CF_BITMAP
+#ifdef CF_BITMAP
 			return CF_BITMAP;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_METAFILEPICT"))
-		#ifdef CF_METAFILEPICT
+#ifdef CF_METAFILEPICT
 			return CF_METAFILEPICT;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_SYLK"))
-		#ifdef CF_SYLK
+#ifdef CF_SYLK
 			return CF_SYLK;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_DIF"))
-		#ifdef CF_DIF
+#ifdef CF_DIF
 			return CF_DIF;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_TIFF"))
-		#ifdef CF_TIFF
+#ifdef CF_TIFF
 			return CF_TIFF;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_OEMTEXT"))
-		#ifdef CF_OEMTEXT
+#ifdef CF_OEMTEXT
 			return CF_OEMTEXT;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_DIB"))
-		#ifdef CF_DIB
+#ifdef CF_DIB
 			return CF_DIB;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_PALETTE"))
-		#ifdef CF_PALETTE
+#ifdef CF_PALETTE
 			return CF_PALETTE;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_PENDATA"))
-		#ifdef CF_PENDATA
+#ifdef CF_PENDATA
 			return CF_PENDATA;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_RIFF"))
-		#ifdef CF_RIFF
+#ifdef CF_RIFF
 			return CF_RIFF;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_WAVE"))
-		#ifdef CF_WAVE
+#ifdef CF_WAVE
 			return CF_WAVE;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_UNICODETEXT"))
-		#ifdef CF_UNICODETEXT
+#ifdef CF_UNICODETEXT
 			return CF_UNICODETEXT;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_ENHMETAFILE"))
-		#ifdef CF_ENHMETAFILE
+#ifdef CF_ENHMETAFILE
 			return CF_ENHMETAFILE;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_HDROP"))
-		#ifdef CF_HDROP
+#ifdef CF_HDROP
 			return CF_HDROP;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
 	if (strEQ(name, "CF_LOCALE"))
-		#ifdef CF_LOCALE
+#ifdef CF_LOCALE
 			return CF_LOCALE;
-		#else
+#else
 			goto not_there;
-		#endif
+#endif
     errno = EINVAL;
     return 0;
 

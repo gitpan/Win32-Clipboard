@@ -3,7 +3,7 @@ package Win32::Clipboard;
 #
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
-# Version: 0.50
+# Version: 0.51
 # Author: Aldo Calpini <dada@perl.it>
 #
 #######################################################################
@@ -63,7 +63,7 @@ sub AUTOLOAD {
 #######################################################################
 # STATIC OBJECT PROPERTIES
 #
-$VERSION = "0.50";
+$VERSION = "0.51";
 
 #######################################################################
 # FUNCTIONS
@@ -147,6 +147,7 @@ Win32::Clipboard - Interaction with the Windows clipboard
     $CLIP->WaitForChange();
     print "Clipboard has changed!\n";
 
+
 =head1 DESCRIPTION
 
 This module lets you interact with the Windows clipboard: you can get its content,
@@ -198,7 +199,7 @@ Example:
 
 All the functions can be used either with their full name (eg. B<Win32::Clipboard::Get>)
 or as methods of a C<Win32::Clipboard> object.
-For the syntax, refer to L<SYNOPSIS> above. Note also that you can create a clipboard
+For the syntax, refer to L</SYNOPSIS> above. Note also that you can create a clipboard
 object and set its content at the same time with:
 
     $CLIP = Win32::Clipboard("blah blah blah");
@@ -210,8 +211,9 @@ or with the more common form:
 If you prefer, you can even tie the Clipboard to a variable like this:
 
 	tie $CLIP, 'Win32::Clipboard';
-
+	
 	print "Clipboard content: $CLIP\n";
+	
 	$CLIP = "some text to copy to the clipboard...";
 
 In this case, you can still access other methods using the tied() function:
@@ -230,7 +232,7 @@ Empty the clipboard.
 =item EnumFormats()
 
 Returns an array of identifiers describing the format for the data currently in the
-clipboard. Formats can be standard ones (described in the L<CONSTANTS> section) or 
+clipboard. Formats can be standard ones (described in the L</CONSTANTS> section) or 
 application-defined custom ones. See also IsFormatAvailable().
 
 =for html <P>
@@ -253,7 +255,7 @@ to check the clipboard format before getting data.
 =item GetAs(FORMAT)
 
 Returns the clipboard content in the desired FORMAT (can be one of the constants
-defined in the L<CONSTANTS> section or a custom format). Note that the only
+defined in the L</CONSTANTS> section or a custom format). Note that the only
 meaningful identifiers are C<CF_TEXT>, C<CF_DIB> and C<CF_HDROP>; any other
 format is treated as a string.
 
@@ -275,7 +277,7 @@ Returns the clipboard content as a list of filenames, or C<undef> on errors.
 
 Returns the name of the specified custom clipboard format, or C<undef> on errors;
 note that you cannot get the name of the standard formats (described in the
-L<CONSTANTS> section).
+L</CONSTANTS> section).
 
 =for html <P>
 
@@ -302,7 +304,7 @@ files. See also GetFiles().
 =item IsFormatAvailable(FORMAT)
 
 Checks if the clipboard data matches the specified FORMAT (one of the constants 
-described in the L<CONSTANTS> section); returns zero if the data does not match,
+described in the L</CONSTANTS> section); returns zero if the data does not match,
 a nonzero value if it matches.
 
 =for html <P>
@@ -359,7 +361,7 @@ IsFormatAvailable() and GetAs() functions:
 
 Aldo Calpini <F<dada@perl.it>>
 
-Original XS porting by Gurusamy Sarathy <F<gsar@engin.umich.edu>>.
+Original XS porting by Gurusamy Sarathy <F<gsar@activestate.com>>.
 
 =cut
 

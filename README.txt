@@ -3,7 +3,7 @@
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
 # Author: Aldo Calpini <dada@perl.it>
-# Version: 0.50
+# Version: 0.51
 # Info:
 #       http://dada.perl.it
 #       http://www.perl.com/CPAN/authors/Aldo_Calpini
@@ -23,17 +23,17 @@ changes. This version supports 3 formats for getting clipboard data:
 ...and only simple text for putting data to the clipboard.
 
 SYNOPSIS
-        use Win32::Clipboard;
+	use Win32::Clipboard;
 
-        $CLIP = Win32::Clipboard();
+	$CLIP = Win32::Clipboard();
 
-        print "Clipboard contains: ", $CLIP->Get(), "\n";
+	print "Clipboard contains: ", $CLIP->Get(), "\n";
 
-        $CLIP->Set("some text to copy into the clipboard");
+	$CLIP->Set("some text to copy into the clipboard");
 
-        $CLIP->Empty();
+	$CLIP->Empty();
 
-        $CLIP->WaitForChange();
-        print "Clipboard has changed!\n";
+	$CLIP->WaitForChange();
+	print "Clipboard has changed!\n";
 
 

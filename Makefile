@@ -10,10 +10,12 @@
 #
 #   MakeMaker Parameters:
 
-#	AUTHOR => q[Aldo Calpini, dada@perl.it]
+#	ABSTRACT => q[Interaction with the Windows clipboard]
+#	AUTHOR => q[Aldo Calpini <dada@perl.it>]
 #	LIBS => q[user32.lib]
 #	NAME => q[Win32::Clipboard]
 #	VERSION_FROM => q[Clipboard.pm]
+#	XS => { Clipboard.xs=>q[Clipboard.cpp] }
 #	dist => { COMPRESS=>q[gzip -9f], SUFFIX=>q[gz] }
 
 # --- MakeMaker post_initialize section:
@@ -48,9 +50,9 @@ AR_STATIC_ARGS = cr
 NAME = Win32::Clipboard
 DISTNAME = Win32-Clipboard
 NAME_SYM = Win32_Clipboard
-VERSION = 0.50
-VERSION_SYM = 0_50
-XS_VERSION = 0.50
+VERSION = 0.51
+VERSION_SYM = 0_51
+XS_VERSION = 0.51
 INST_BIN = blib\bin
 INST_EXE = blib\script
 INST_LIB = blib\lib
@@ -100,8 +102,10 @@ LINKTYPE = dynamic
 
 # Handy lists of source code files:
 XS_FILES= Clipboard.xs
-C_FILES = Clipboard.c
-O_FILES = Clipboard.obj
+C_FILES = Clipboard.c \
+	Clipboard.cpp
+O_FILES = Clipboard.obj \
+	Clipboard.obj
 H_FILES = 
 MAN1PODS = 
 MAN3PODS = Clipboard.pm
@@ -253,8 +257,8 @@ SPLIT =
 # Win32::Clipboard might depend on some other libraries:
 # See ExtUtils::Liblist for details
 #
-EXTRALIBS = p:\lib\CORE\PerlCRT.lib
-LDLOADLIBS = p:\lib\CORE\PerlCRT.lib c:\vs\vc\lib\kernel32.lib c:\vs\vc\lib\user32.lib c:\vs\vc\lib\shell32.lib
+EXTRALIBS = C:\vs\vc\lib\user32.lib C:\vs\vc\lib\oldnames.lib C:\vs\vc\lib\kernel32.lib C:\vs\vc\lib\user32.lib C:\vs\vc\lib\gdi32.lib C:\vs\vc\lib\winspool.lib C:\vs\vc\lib\comdlg32.lib C:\vs\vc\lib\advapi32.lib C:\vs\vc\lib\shell32.lib C:\vs\vc\lib\ole32.lib C:\vs\vc\lib\oleaut32.lib C:\vs\vc\lib\netapi32.lib C:\vs\vc\lib\uuid.lib C:\vs\vc\lib\wsock32.lib C:\vs\vc\lib\mpr.lib C:\vs\vc\lib\winmm.lib C:\vs\vc\lib\version.lib C:\vs\vc\lib\odbc32.lib C:\vs\vc\lib\odbccp32.lib p:\lib\CORE\PerlCRT.lib
+LDLOADLIBS = C:\vs\vc\lib\user32.lib C:\vs\vc\lib\oldnames.lib C:\vs\vc\lib\kernel32.lib C:\vs\vc\lib\user32.lib C:\vs\vc\lib\gdi32.lib C:\vs\vc\lib\winspool.lib C:\vs\vc\lib\comdlg32.lib C:\vs\vc\lib\advapi32.lib C:\vs\vc\lib\shell32.lib C:\vs\vc\lib\ole32.lib C:\vs\vc\lib\oleaut32.lib C:\vs\vc\lib\netapi32.lib C:\vs\vc\lib\uuid.lib C:\vs\vc\lib\wsock32.lib C:\vs\vc\lib\mpr.lib C:\vs\vc\lib\winmm.lib C:\vs\vc\lib\version.lib C:\vs\vc\lib\odbc32.lib C:\vs\vc\lib\odbccp32.lib p:\lib\CORE\PerlCRT.lib
 BSLOADLIBS = 
 LD_RUN_PATH = 
 
@@ -287,8 +291,8 @@ PASTHRU = -nologo
 
 # --- MakeMaker xs_c section:
 
-.xs.c:
-	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) $(XSUBPP) $(XSPROTOARG) $(XSUBPPARGS) $*.xs >xstmp.c && $(MV) xstmp.c $*.c
+.xs.cpp:
+	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) $(XSUBPP) $(XSPROTOARG) $(XSUBPPARGS) $*.xs >xstmp.c && $(MV) xstmp.c $*.cpp
 
 
 # --- MakeMaker xs_o section:
@@ -452,7 +456,7 @@ manifypods :
 # the Makefile here so a later make realclean still has a makefile to use.
 
 clean ::
-	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf Clipboard.c ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all perlmain.c mon.out core so_locations pm_to_blib *~ */*~ */*/*~ *$(OBJ_EXT) *$(LIB_EXT) perl.exe $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def $(BASEEXT).exp
+	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e rm_rf Clipboard.cpp ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all perlmain.c mon.out core so_locations pm_to_blib *~ */*~ */*/*~ *$(OBJ_EXT) *$(LIB_EXT) perl.exe $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def $(BASEEXT).exp
 	-$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Command -e mv Makefile Makefile.old $(DEV_NULL)
 
 
@@ -644,7 +648,7 @@ $(PERL_INC)/form.h         $(PERL_INC)/perly.h
 
 $(OBJECT) : $(PERL_HDRS)
 
-Clipboard.c : $(XSUBPPDEPS)
+Clipboard.cpp : $(XSUBPPDEPS)
 
 
 # --- MakeMaker makefile section:
@@ -692,7 +696,7 @@ $(MAKE_APERL_FILE) : $(FIRST_MAKEFILE)
 TEST_VERBOSE=0
 TEST_TYPE=test_$(LINKTYPE)
 TEST_FILE = test.pl
-TEST_FILES = t\TEST.T t\TIE.T
+TEST_FILES = t\TEST.T
 TESTDB_SW = -d
 
 testdb :: testdb_$(LINKTYPE)
@@ -718,7 +722,7 @@ testdb_static :: pure_all $(MAP_TARGET)
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Win32-Clipboard\" VERSION=\"0,50,0,0\">\n}. qq{\t<TITLE>Win32-Clipboard</TITLE>\n}. qq{\t<ABSTRACT></ABSTRACT>\n}. qq{\t<AUTHOR>Aldo Calpini, dada\@perl.it</AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"MSWin32-x86-object\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Win32-Clipboard.ppd
+	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Win32-Clipboard\" VERSION=\"0,51,0,0\">\n}. qq{\t<TITLE>Win32-Clipboard</TITLE>\n}. qq{\t<ABSTRACT>Interaction with the Windows clipboard</ABSTRACT>\n}. qq{\t<AUTHOR>Aldo Calpini &lt;dada\@perl.it&gt;</AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"MSWin32-x86-object\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Win32-Clipboard.ppd
 
 # --- MakeMaker pm_to_blib section:
 
