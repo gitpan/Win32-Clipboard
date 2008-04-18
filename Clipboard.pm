@@ -3,7 +3,7 @@ package Win32::Clipboard;
 #
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
-# Version: 0.52
+# Version: 0.53
 # Author: Aldo Calpini <dada@perl.it>
 #
 # Modified by: Hideyo Imazu <himazu@gmail.com>
@@ -43,18 +43,15 @@ sub AUTOLOAD {
     my($constname);
     ($constname = $AUTOLOAD) =~ s/.*:://;
     #reset $! to zero to reset any current errors.
-    $!=0;
+    local $! = 0;
     my $val = constant($constname, @_ ? $_[0] : 0);
     if ($! != 0) {
-
         if ($! =~ /Invalid/) {
             $AutoLoader::AUTOLOAD = $AUTOLOAD;
             goto &AutoLoader::AUTOLOAD;
         } else {
-            ($pack, $file, $line) = caller;
-            undef $pack; # and get rid of "used only once" warning...
+            my ($pack, $file, $line) = caller;
             die "Win32::Clipboard::$constname is not defined, used at $file line $line.";
-
         }
     }
     eval "sub $AUTOLOAD { $val }";
@@ -65,7 +62,7 @@ sub AUTOLOAD {
 #######################################################################
 # STATIC OBJECT PROPERTIES
 #
-$VERSION = "0.52";
+$VERSION = "0.53";
 
 #######################################################################
 # FUNCTIONS
@@ -365,7 +362,7 @@ This version was released by Hideyo Imazu <F<himazu@gmail.com>>.
 
 Aldo Calpini <F<dada@perl.it>> was the former maintainer.
 
-Original XS porting by Gurusamy Sarathy <F<gsar@activestate.com>>.
+Original XS porting by Gurusamy Sarathy <F<gsar@cpan.org>>.
 
 =cut
 

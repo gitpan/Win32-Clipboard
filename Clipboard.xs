@@ -3,9 +3,9 @@
 #
 # Win32::Clipboard - Interaction with the Windows clipboard
 #
-# Version: 0.52
+# Version: 0.53
 # Created: 19 Nov 96
-# Author: Aldo Calpini <dada@divinf.it>
+# Author: Aldo Calpini <dada@perl.it>
 #
 # Modified: 24 Jul 2004
 # By: Hideyo Imazu <h@imazu.net>
@@ -24,9 +24,21 @@
 
 #define __TEMP_WORD  WORD   /* perl defines a WORD, yikes! */
 
+#ifdef __cplusplus
+#include <stdlib.h>
+#include <math.h>
+extern "C" {
+#endif
+
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+
+#ifdef __cplusplus
+}
+#endif
+
+#include "ppport.h"
 
 #undef WORD
 #define WORD __TEMP_WORD
@@ -164,7 +176,7 @@ DWORD WINAPI ClipboardViewer(LPVOID hEvt) {
 
     if(RegisterClassEx(&wcx)) {
         if(hwnd = CreateWindowEx(
-        	0,
+			0,
             wcx.lpszClassName,
             "", 0,
             1, 1, 1, 1,
@@ -412,7 +424,7 @@ void
 WaitForChange(...)
 PPCODE:
     DWORD cause;
-    DWORD timeout;
+	DWORD timeout;
 
     if(hThread == NULL) {
 #ifdef WIN32__CLIPBOARD__DEBUG
@@ -424,10 +436,10 @@ PPCODE:
     // set the event to be waited for
     ResetEvent(hEvt);
 
-    timeout = INFINITE;
+	timeout = INFINITE;
 
-    if(items == 1 && !SvROK(ST(0))) { timeout = SvIV(ST(0)); }
-    if(items == 2) { timeout = SvIV(ST(1)); }
+	if(items == 1 && !SvROK(ST(0))) { timeout = (DWORD)SvIV(ST(0)); }
+	if(items == 2) { timeout = (DWORD)SvIV(ST(1)); }
 
     cause = WaitForSingleObject(hEvt, timeout);
     EXTEND(SP,1);
@@ -435,7 +447,7 @@ PPCODE:
         XST_mIV(0, 1);
     else if ( cause == WAIT_TIMEOUT )
         XST_mIV(0, 0);
-    else
+	else
         XST_mNO(0);
     XSRETURN(1);
 
@@ -444,49 +456,49 @@ GetText(...)
 PPCODE:
     HANDLE myhandle;
     if(OpenClipboard(NULL)) {
-	EXTEND(SP,1);
-	if(myhandle = GetClipboardData(CF_TEXT))
-	    XST_mPV(0, (char *) myhandle);
-	else
-	    XST_mNO(0);
-	CloseClipboard();
-	XSRETURN(1);
-    } else {
-	XSRETURN_NO;
-    }
+		EXTEND(SP,1);
+		if(myhandle = GetClipboardData(CF_TEXT))
+			XST_mPV(0, (char *) myhandle);
+		else
+			XST_mNO(0);
+		CloseClipboard();
+		XSRETURN(1);
+	} else {
+		XSRETURN_NO;
+	}
 
 void
 GetFiles(...)
 PPCODE:
     HANDLE myhandle;
-    LPTSTR filename;
-    UINT namelength;
-    int i, toreturn;
-    UINT count;
+	LPTSTR filename;
+	UINT namelength;
+	UINT i, toreturn;
+	UINT count;
     if ( OpenClipboard(NULL) ) {
-	if ( myhandle = GetClipboardData(CF_HDROP) ) {
-	    count = DragQueryFile((HDROP) myhandle, 0xFFFFFFFF, NULL, 0);
-	    EXTEND(SP, count);
-	    for ( i = 0 ; i < count ; i++ ) {
-		namelength = DragQueryFile((HDROP) myhandle, i, NULL, 0);
-		filename = (LPTSTR) safemalloc(namelength+1);
-		DragQueryFile((HDROP) myhandle, i, filename, namelength+1);
-		XST_mPV(i, (char *)filename);
-		safefree(filename);
-	    }
-	    toreturn = count;
+		if ( myhandle = GetClipboardData(CF_HDROP) ) {
+			count = DragQueryFile((HDROP) myhandle, 0xFFFFFFFF, NULL, 0);
+			EXTEND(SP, count);
+			for ( i = 0 ; i < count ; i++ ) {
+				namelength = DragQueryFile((HDROP) myhandle, i, NULL, 0);
+				filename = (LPTSTR) safemalloc(namelength+1);
+				DragQueryFile((HDROP) myhandle, i, filename, namelength+1);
+				XST_mPV(i, (char *)filename);
+				safefree(filename);
+			}
+			toreturn = count;
+		}
+                else {
+			EXTEND(SP, 1);
+			XST_mNO(0);
+			toreturn = 1;
+		}
+		CloseClipboard();
+		XSRETURN(toreturn);
 	}
-	else {
-	    EXTEND(SP, 1);
-	    XST_mNO(0);
-	    toreturn = 1;
-	}
-	CloseClipboard();
-	XSRETURN(toreturn);
-    }
     else {
-	XSRETURN_NO;
-    }
+		XSRETURN_NO;
+	}
 
 void
 GetBitmap(...)
@@ -523,13 +535,13 @@ PPCODE:
     HANDLE myhandle;
     LPTSTR filename;
     UINT namelength;
-    int toret;
+    UINT toret;
     UINT count;
-    int i;
+    UINT i;
     BITMAPFILEHEADER hdr;
     int dib_size;
     SV* buffer;
-    if(items == 1) format = SvIV(ST(0));
+    if(items == 1) format = (int)SvIV(ST(0));
     if ( OpenClipboard(NULL) ) {
 	switch ( format ) {
 	case CF_HDROP:
@@ -588,14 +600,15 @@ PPCODE:
     HANDLE myhandle;
     HGLOBAL hGlobal;
     LPTSTR szString;
-    int leng;
+    char *str;
+    STRLEN leng;
     if (items > 1)
         text = ST(1);
 
-    leng = SvCUR(text);
+    str = SvPV(text, leng);
     if ( hGlobal = GlobalAlloc(GMEM_DDESHARE, (leng+1)*sizeof(char)) ) {
         szString = (char *) GlobalLock(hGlobal);
-        memcpy(szString, (char *) SvPV(text, PL_na), leng*sizeof(char));
+        memcpy(szString, str, leng*sizeof(char));
         szString[leng] = (char) 0;
         GlobalUnlock(hGlobal);
 
@@ -609,12 +622,12 @@ PPCODE:
             } else {
 #ifdef WIN32__CLIPBOARD__DEBUG
                 printf("XS(Set): SetClipboardData failed (%d)\n",
-		       GetLastError());
+                       GetLastError());
 #endif
                 XSRETURN_NO;
             }
         }
-	else {
+        else {
 #ifdef WIN32__CLIPBOARD__DEBUG
             printf("XS(Set): OpenClipboard failed (%d)\n", GetLastError());
 #endif
@@ -646,21 +659,21 @@ PPCODE:
 void
 EnumFormats(...)
 PPCODE:
-    UINT format;
-    int count;
+	UINT format;
+	int count;
     if ( OpenClipboard(NULL) ) {
-	format = EnumClipboardFormats(0);
-	count = 0;
-	while ( format != 0 ) {
-	    XST_mIV(count++, (long) format);
-	    format = EnumClipboardFormats(format);
-	}
-	CloseClipboard();
+		format = EnumClipboardFormats(0);
+		count = 0;
+		while ( format != 0 ) {
+			XST_mIV(count++, (long) format);
+			format = EnumClipboardFormats(format);
+		}
+		CloseClipboard();
     }
     else {
         XSRETURN_NO;
     }
-    XSRETURN(count);
+	XSRETURN(count);
 
 void
 IsFormatAvailable(svformat, ...)
@@ -668,7 +681,7 @@ IsFormatAvailable(svformat, ...)
 PPCODE:
     if (items > 1)
         svformat = ST(1);
-    XST_mIV(0, (long) IsClipboardFormatAvailable((UINT) SvIV(svformat)));
+	XST_mIV(0, (long) IsClipboardFormatAvailable((UINT) SvIV(svformat)));
     XSRETURN(1);
 
 long
@@ -681,9 +694,9 @@ OUTPUT:
 long
 IsBitmap(...)
 CODE:
-    RETVAL = (long) IsClipboardFormatAvailable(CF_DIB);
+	RETVAL = (long) IsClipboardFormatAvailable(CF_DIB);
 OUTPUT:
-    RETVAL
+	RETVAL
 
 long
 IsFiles(...)
@@ -699,11 +712,11 @@ PPCODE:
 	char * name[1024];
     if (items > 1)
         svformat = ST(1);
-    if ( GetClipboardFormatName((UINT) SvIV(svformat), (LPTSTR) name, 1024) ) {
-	EXTEND(SP, 1);
-	XST_mPV(0, (char *) name);
-	XSRETURN(1);
-    }
+	if ( GetClipboardFormatName((UINT) SvIV(svformat), (LPTSTR) name, 1024) ) {
+		EXTEND(SP, 1);
+		XST_mPV(0, (char *) name);
+		XSRETURN(1);
+	}
     else {
-	XSRETURN_NO;
-    }
+		XSRETURN_NO;
+	}
